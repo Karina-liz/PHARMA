@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mi Ahorro Pharma - Nosotros</title>
+
+    <link th:include="components/link"></link>
+</head>
+<body>
+
+    <header th:include="components/nav_panel"></header>
+    <header th:include="components/principal"></header>
+
+<main>
+    
+    <!-- About Us -->
+    <section class="about-us">
+        <div class="info">
+            <h3>Acerca de nosotros</h3>
+            <p>Bienvenidos a "Mi Ahorro Pharma", donde cuidamos de tu salud y bienestar. Con años de experiencia en el sector, nuestro equipo de profesionales
+                farmacéuticos está comprometido a ofrecerte un servicio de calidad y atención personalizada. Creemos en la importancia de la ética y la transparencia en cada interacción. Nos esforzamos por
+                garantizar que todos nuestros productos sean seguros y efectivos, proporcionando asesoramiento claro y accesible.</p>
+            <hr>
+        </div>
+
+        <div class="free-content">
+            <div class="icons">
+                <div>
+                   <div class="span-icon"><span><i class="fas fa-users"></i></span></div>
+                   <h6>Valores</h6>
+                   <p>Una farmacia debe priorizar la ética, la calidad, el compromiso con la salud, la accesibilidad, el respeto y la educación,
+                       asegurando atención integral y responsable para el bienestar de la comunidad.</p>
+                </div>
+
+                <div>
+                    <div class="span-icon"><span><i class="fas fa-bullseye"></i></span></div>
+                    <h6>Misión</h6>
+                    <p>Ofrecer a nuestros clientes servicios farmacéuticos de buena calidad, forma profesional, servicial y cercana.
+                        Proporcionar medicamentos seguros y efectivos para convertirnos en un modelo de confianza en el ámbito de salud.
+                    </p>
+                 </div>
+
+                 <div>
+                    <div class="span-icon"><span><i class="fas fa-chart-line"></i></span></div>
+                    <h6>Visión</h6>
+                    <p>Ser reconocida por nuestro compromiso con la salud y el bienestar de la comunidad, ofreciendo una amplia variedad
+                        de servicios farmacéuticos innovadores y personalizados.</p>
+                 </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section">
+        <div class="animal-icon">
+            <i class="fas fa-capsules" ></i>
+        </div>
+
+        <div class="gallery-content">
+            <div class="img-card"><img src="img/img 1.jpeg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 2.jpeg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 3.jpeg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 4.jpg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 5.jpg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 6.jpeg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 7.jpeg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 8.jpg" alt="Mi Ahorro Pharma"></div>
+
+        </div>
+
+        <!-- Modal -->
+         <div class="modal">
+             <span id="closeModal"><i class="fas fa-times"></i></span>
+             <img id="imgModal">
+             <p id="caption"></p>
+         </div>
+
+    </section>
+
+    <div th:include="components/footer"></div>
+</main>
+    
+<!-- Scripts -->
+<script src="https://kit.fontawesome.com/35db202371.js" crossorigin="anonymous"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

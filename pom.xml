@@ -24,10 +24,16 @@
 
     <!-- Dependencia de Apache POI para trabajar con archivos Excel -->
 		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>5.2.4</version>
-		</dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>5.2.4</version>
+    </dependency>
+    <!-- Dependencia adicional requerida por Apache POI -->
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>4.4</version>
+    </dependency>
         <!-- Spring Boot Starter Web (para la parte web y controladores) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -96,6 +102,8 @@
             <version>5.0.0</version>
             <scope>provided</scope>
         </dependency>
+
+        
     </dependencies>
 
     <build>

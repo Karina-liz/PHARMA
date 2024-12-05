@@ -7,7 +7,14 @@ import com.app.restaurante.service.RolService;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,7 +103,7 @@ public class EmpleadoController {
 
         @GetMapping("/exportar")
     public void exportarEmpleados(HttpServletResponse response) throws IOException {
-        response.setContentType("text/csv");
+        response.setContentType("text/xlsx");
         response.setHeader("Content-Disposition", "attachment; filename=empleados.csv");
         
         List<Empleado> empleados = empleadoService.listarEmpleados();

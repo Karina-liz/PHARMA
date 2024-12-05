@@ -5,6 +5,7 @@ import com.app.restaurante.model.DetalleEmpleado;
 import com.app.restaurante.service.EmpleadoService;
 import com.app.restaurante.service.RolService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -91,5 +93,25 @@ public class EmpleadoController {
         );
         return empleadoSinContrasena;
     }
+
+        @GetMapping("/exportar")
+    public void exportarEmpleados(HttpServletResponse response) throws IOException {
+        response.setContentType("text/csv");
+        response.setHeader("Content-Disposition", "attachment; filename=empleados.csv");
+        
+        List<Empleado> empleados = empleadoService.listarEmpleados();
+        PrintWriter writer = response.getWriter();
+        writer.println("Nombre,Apellido,Correo,Puesto,Salario");
+        
+        for (Empleado empleado : empleados) {
+            writer.println(empleado.getNombre() + "," +
+                           empleado.getApellidoMaterno() + "," +
+                           empleado.getApellidoPaterno() + "," +
+                           empleado.getUsuario() + "," +
+                           empleado.getRol());
+        }
+        writer.flush();
+    }
+
 }
 

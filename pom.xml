@@ -21,6 +21,13 @@
     </properties>
     
     <dependencies>
+
+    <!-- Dependencia de Apache POI para trabajar con archivos Excel -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.2.4</version>
+		</dependency>
         <!-- Spring Boot Starter Web (para la parte web y controladores) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

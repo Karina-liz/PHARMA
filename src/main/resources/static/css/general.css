@@ -240,12 +240,13 @@ body{
 
 .tarjeta {
     position: relative; /* Necesario para posicionar el pseudo-elemento */
-    width: 30%; /* Ancho de cada tarjeta */
-    height: 200px; /* Altura de cada tarjeta */
+    width: 20%; /* Ancho de cada tarjeta */
+    height: 300px; /* Altura de cada tarjeta */
     display: flex;
     align-items: center; /* Centra verticalmente el contenido */
     justify-content: center; /* Centra horizontalmente el contenido */
     color: white; /* Color del texto */
+    z-index: 0.5;
     text-align: center; /* Centra el texto */
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para las tarjetas */
@@ -260,7 +261,7 @@ body{
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad para oscurecer */
-    z-index: 1; /* Asegura que la superposición esté por encima de la imagen de fondo */
+    z-index: 0.5; /* Asegura que la superposición esté por encima de la imagen de fondo */
 }
 
 .contenido {
@@ -269,20 +270,20 @@ body{
 }
 
 .tarjeta-1 {
-    background-image: url('/upload/productos/temuna.jpg'); /* Cambia la ruta a tu imagen de fondo para la tarjeta 1 */
+    background-image: url('/upload/productos/panadil.jpg'); /* Cambia la ruta a tu imagen de fondo para la tarjeta 1 */
     background-color: #1a1818b0;
     background-size: cover; /* Asegura que la imagen cubra toda la tarjeta */
     background-position: center; /* Centra la imagen */
 }
 
 .tarjeta-2 {
-    background-image: url('/upload/productos/sopaseca.jpg'); /* Cambia la ruta a tu imagen de fondo para la tarjeta 2 */
+    background-image: url('/upload/productos/eucerin.jpg'); /* Cambia la ruta a tu imagen de fondo para la tarjeta 2 */
     background-size: cover; /* Asegura que la imagen cubra toda la tarjeta */
     background-position: center; /* Centra la imagen */
 }
 
 .tarjeta-3 {
-    background-image: url('/upload/productos/arrozconleche.jpg'); /* Cambia la ruta a tu imagen de fondo para la tarjeta 3 */
+    background-image: url('/upload/productos/cepillos.png'); /* Cambia la ruta a tu imagen de fondo para la tarjeta 3 */
     background-size: cover; /* Asegura que la imagen cubra toda la tarjeta */
     background-position: center; /* Centra la imagen */
 }

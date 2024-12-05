@@ -15,7 +15,7 @@ import com.app.restaurante.model.Productos;
 import com.app.restaurante.service.UploadServicio;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -42,33 +42,32 @@ public class ProductAdminController {
     }
 
     @PostMapping("/productos")
-public String guardarProducto(@ModelAttribute Productos producto, @RequestParam("file") MultipartFile file) {
-    try {
-        // Verificar y establecer la fecha del producto si no está configurada
-        if (producto.getFechaProducto() == null || producto.getFechaProducto().isEmpty()) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            producto.setFechaProducto(LocalDateTime.now().format(formatter));
+    public String guardarProducto(@ModelAttribute Productos producto, @RequestParam("file") MultipartFile file) {
+        try {
+            // Convertir fechaProducto de String a LocalDate
+            if (producto.getFechaProducto() != null && !producto.getFechaProducto().isEmpty()) {
+                LocalDate fecha = LocalDate.parse(producto.getFechaProducto(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                producto.setFechaProducto(fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); // Guardar como String
+            }
+
+            // Guardar el archivo de imagen si se proporciona
+            String fileName = uploadServicio.saveUpload(file, "productos"); // Guardar en subcarpeta "productos"
+            if (fileName != null) {
+                producto.setFotoProducto(fileName); // Asignar nombre del archivo al producto
+            }
+
+            // Guardar el producto en la base de datos
+            productosDAO.save(producto);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "error"; // Redirigir a una página de error si ocurre un problema
         }
 
-        // Guardar el archivo de imagen si se proporciona
-        String fileName = uploadServicio.saveUpload(file, "productos"); // Guardar en subcarpeta "productos"
-        if (fileName != null) {
-            producto.setFotoProducto(fileName); // Asignar nombre del archivo al producto
-        }
-
-        // Guardar el producto en la base de datos
-        productosDAO.save(producto);
-
-    } catch (IOException e) {
-        e.printStackTrace();
-        return "error"; // Redirigir a una página de error si ocurre un problema
+        return "redirect:/productos"; // Redirigir a la lista de productos tras guardar
     }
 
-    return "redirect:/productos"; // Redirigir a la lista de productos tras guardar
-}
-
-
-        // NUEVO: Método para cargar el formulario de edición
+    // NUEVO: Método para cargar el formulario de edición
     @GetMapping("/productos/editar/{id}")
     public String editarProductoForm(@PathVariable("id") Long id, Model model) {
         Productos producto = productosDAO.findById(id); // Buscar el producto por su ID
@@ -91,6 +90,12 @@ public String guardarProducto(@ModelAttribute Productos producto, @RequestParam(
                 return "error"; // Manejar el caso donde el producto no exista
             }
 
+            // Convertir fechaProducto de String a LocalDate
+            if (producto.getFechaProducto() != null && !producto.getFechaProducto().isEmpty()) {
+                LocalDate fecha = LocalDate.parse(producto.getFechaProducto(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                productoExistente.setFechaProducto(fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); // Guardar como String
+            }
+
             // Actualizar los campos del producto existente
             productoExistente.setNomProducto(producto.getNomProducto());
             productoExistente.setPrecioUnitario(producto.getPrecioUnitario());
@@ -98,6 +103,7 @@ public String guardarProducto(@ModelAttribute Productos producto, @RequestParam(
             productoExistente.setCantidad(producto.getCantidad());
             productoExistente.setIdCategoria(producto.getIdCategoria());
             productoExistente.setIdTipo(producto.getIdTipo());
+            productoExistente.setFechaProducto(producto.getFechaProducto());
 
             // Actualizar la imagen si se ha subido una nueva
             if (!file.isEmpty()) {

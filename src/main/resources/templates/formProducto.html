@@ -38,14 +38,18 @@
                             <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required>
                         </div>
                         
+                        <div class="col-md-6 mb-3">
+                            <label for="fechaProducto" class="form-label">Fecha del Producto</label>
+                            <input type="date" class="form-control" id="fechaProducto" th:field="*{fechaProducto}" required>
+                        </div>
                         
                         <div class="col-md-6 mb-3">
                             <label for="idCategoria" class="form-label">Categoría</label>
                             <select class="form-select" id="idCategoria" th:field="*{idCategoria}" required>
-                                <option value="1">Platillos</option>
-                                <option value="2">Bebidas</option>
-                                <option value="3">Entradas</option>
-                                <option value="4">Postres</option>
+                                <option value="1">Medicamentos</option>
+                                <option value="2">Belleza</option>
+                                <option value="3">Higiene Personal</option>
+                                <option value="4">Productos para Bebé</option>
                             </select>
                         </div>
                         <div>

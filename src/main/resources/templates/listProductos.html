@@ -29,6 +29,7 @@
                                 <th>Descripción</th>
                                 <th>Cantidad</th>
                                 <th>Categoría</th>
+                                <th>Fecha</th>
                                 <th>Foto</th>
                                 <th>Acciones</th>
                             </tr>
@@ -41,13 +42,13 @@
                                 <td th:text="${producto.descripcion}"></td>
                                 <td th:text="${producto.cantidad}"></td>
                                 <td th:switch="${producto.idCategoria}">
-                                    <span th:case="'1'">Platillos</span>
-                                    <span th:case="'2'">Bebidas</span>
-                                    <span th:case="'3'">Entradas</span>
-                                    <span th:case="'4'">Postres</span>
+                                    <span th:case="'1'">Medicamentos</span>
+                                    <span th:case="'2'">Belleza</span>
+                                    <span th:case="'3'">Higiene Personal</span>
+                                    <span th:case="'4'">Productos de bebé</span>
                                     <span th:case="*">Otra Categoría</span> <!-- Opción por defecto -->
                                 </td>
-                                
+                                <td th:text="${producto.fechaProducto}"></td>
                                 <td>
                                     <img th:src="@{/upload/productos/{nombre}(nombre=${producto.fotoProducto})}" 
                                     alt="Sin foto" style="width: 100px; height: auto;" />
